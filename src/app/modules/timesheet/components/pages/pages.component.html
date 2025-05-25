@@ -1,0 +1,53 @@
+<div class="container my-4">
+
+  <div class="timesheet-container">
+    <h1>Smart Student TimeSheet</h1>
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="timesheetForm" (ngSubmit)="onSubmit()" class="timesheet-form">
+          <div class="form-group">
+            <label for="studentId" class="form-label">Student ID:</label>
+            <input type="text" id="studentId" formControlName="studentId" placeholder="Enter your student ID"
+              class="form-control">
+            <div *ngIf="
+                                (timesheetForm.controls.studentId.touched ||
+                                  isFormSubmitted) &&
+                                timesheetForm.controls.studentId.errors &&
+                                timesheetForm.controls.studentId.errors
+                                  .pattern != null " class="text-danger">
+              Please enter a valid student ID (numbers only)
+            </div>
+          </div>
+
+          <div class="text-end mt-2">
+            <button type="submit" [disabled]="timesheetForm.invalid || isLoading" class="btn btn-primary mx-2">
+              {{ isLoading ? 'Loading...' : 'Get TimeSheet' }}
+            </button>
+            <button type="reset" class="btn btn-secondary" (click)="reset()">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="card mt-3" *ngIf="error" >
+      <div class="card-body">
+        <div class="error-message"><p class="my-2">{{ error }}</p></div>
+      </div>
+    </div>
+    <div class="card mt-3" *ngIf="timesheetData&&!error">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <h4>Schedule for ({{ timesheetData.studentName }})</h4>
+        <span class="badge bg-secondary">Student Id : {{ timesheetData.studentId }}</span>
+      </div>
+      <div class="card-body">
+
+        <app-current-class [schedule]="timesheetData.schedule"></app-current-class>
+
+        <app-schedule-table [schedule]="timesheetData.schedule"></app-schedule-table>
+      </div>
+    </div>
+  </div>
+</div>

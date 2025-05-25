@@ -1,0 +1,20 @@
+<div class="schedule-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Class Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let classItem of schedule; trackBy: trackByClass" [ngClass]="getClassRowClass(classItem)">
+        <td>{{ classItem.className }}</td>
+        <td>{{ classItem.date | date:'mediumDate' }}</td>
+        <td>{{ classItem.startTime }} - {{ classItem.endTime }}</td>
+        <td>{{ classItem.room }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

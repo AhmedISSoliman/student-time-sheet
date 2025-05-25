@@ -1,0 +1,19 @@
+<div class="current-class-container" *ngIf="currentClass || nextClass">
+  <div class="current-class" *ngIf="currentClass">
+    <h3>Current Class</h3>
+    <div class="class-info">
+      <p><strong>{{ currentClass.className }}</strong></p>
+      <p>Until {{ currentClass.endTime }}</p>
+      <p>Room: {{ currentClass.room }}</p>
+    </div>
+  </div>
+
+  <div class="next-class" *ngIf="nextClass && !currentClass">
+    <h3>Next Class</h3>
+    <div class="class-info">
+      <p><strong>{{ nextClass.className }}</strong></p>
+      <p>Starts at {{ nextClass.startTime }}</p>
+      <p>Room: {{ nextClass.room }}</p>
+    </div>
+  </div>
+</div>
