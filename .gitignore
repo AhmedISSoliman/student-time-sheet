@@ -134,3 +134,25 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Angular specific
+.angular/cache
+.angular/config.json
+
+# Node modules
+node_modules/
+
+# Production
+/dist
+/tmp
+
+# IDE settings
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Environment files
+.env
+*.env
