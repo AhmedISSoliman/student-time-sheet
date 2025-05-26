@@ -3,16 +3,16 @@
     <thead>
       <tr>
         <th>Class Name</th>
-        <th>Date</th>
-        <th>Time</th>
+        <th>From</th>
+        <th>To</th>
         <th>Room</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let classItem of schedule; trackBy: trackByClass" [ngClass]="getClassRowClass(classItem)">
         <td>{{ classItem.className }}</td>
-        <td>{{ classItem.date | date:'mediumDate' }}</td>
-        <td>{{ classItem.startTime }} - {{ classItem.endTime }}</td>
+        <td>{{ classItem.startTime|date:'MM/dd/yyyy hh:mm a'}}</td>
+        <td>{{ classItem.endTime|date:'MM/dd/yyyy hh:mm a' }}</td>
         <td>{{ classItem.room }}</td>
       </tr>
     </tbody>

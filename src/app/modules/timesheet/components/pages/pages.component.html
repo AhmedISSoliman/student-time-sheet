@@ -1,7 +1,7 @@
 <div class="container my-4">
 
   <div class="timesheet-container">
-    <h1>Smart Student TimeSheet</h1>
+    <h1>Student TimeSheet</h1>
     <div class="card">
       <div class="card-body">
         <form [formGroup]="timesheetForm" (ngSubmit)="onSubmit()" class="timesheet-form">
@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <div class="text-end mt-2">
+          <div class="text-end mt-3">
             <button type="submit" [disabled]="timesheetForm.invalid || isLoading" class="btn btn-primary mx-2">
               {{ isLoading ? 'Loading...' : 'Get TimeSheet' }}
             </button>

@@ -5,7 +5,7 @@ import { TimesheetRequest } from '../models/request/timesheet-request.interface'
 import { ScheduleResponse } from '../models/response/timesheet-response.interface';
 
 @Injectable({
-  providedIn: 'root' // Or could be provided in TimesheetModule
+  providedIn: 'root'
 })
 export class TimesheetFacade {
   constructor(private timesheetService: TimesheetServiceContract) {}

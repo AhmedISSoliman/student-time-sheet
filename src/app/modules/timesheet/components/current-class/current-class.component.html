@@ -3,7 +3,7 @@
     <h3>Current Class</h3>
     <div class="class-info">
       <p><strong>{{ currentClass.className }}</strong></p>
-      <p>Until {{ currentClass.endTime }}</p>
+      <p>Until {{ currentClass.endTime |date:'MM/dd/yyyy hh:mm a' }}</p>
       <p>Room: {{ currentClass.room }}</p>
     </div>
   </div>
@@ -12,7 +12,7 @@
     <h3>Next Class</h3>
     <div class="class-info">
       <p><strong>{{ nextClass.className }}</strong></p>
-      <p>Starts at {{ nextClass.startTime }}</p>
+      <p>Starts at {{ nextClass.startTime |date:'MM/dd/yyyy hh:mm a' }}</p>
       <p>Room: {{ nextClass.room }}</p>
     </div>
   </div>

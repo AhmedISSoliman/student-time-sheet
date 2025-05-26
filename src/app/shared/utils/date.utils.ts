@@ -1,14 +1,13 @@
 export class DateUtils {
-  static isCurrentClass(classTime: { date: string; startTime: string; endTime: string }): boolean {
+  static isCurrentClass(classTime: { startTime: string; endTime: string }): boolean {
     const now = new Date();
-    const classDate = new Date(`${classTime.date}T${classTime.startTime}`);
-    const classEndDate = new Date(`${classTime.date}T${classTime.endTime}`);
-    return now >= classDate && now <= classEndDate;
+    const classStart = new Date(classTime.startTime);
+    const classEnd = new Date(classTime.endTime);
+    return now >= classStart && now <= classEnd;
   }
 
-  static isNextClass(classTime: { date: string; startTime: string }, currentDate: Date = new Date()): boolean {
-    const classDate = new Date(`${classTime.date}T${classTime.startTime}`);
-    return classDate > currentDate &&
-           classDate.getTime() - currentDate.getTime() <= 3600000; // within next hour
+  static isNextClass(classTime: { startTime: string }, currentDate: Date = new Date()): boolean {
+    const classStart = new Date(classTime.startTime);
+    return classStart > currentDate && classStart.getTime() - currentDate.getTime() <= 3600000;
   }
 }

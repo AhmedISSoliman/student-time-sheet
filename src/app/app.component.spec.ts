@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'smart-student-timesheet'`, () => {
+  it(`should have as title 'student-timesheet'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('smart-student-timesheet');
+    expect(app.title).toEqual('student-timesheet');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, smart-student-timesheet');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, student-timesheet');
   });
 });

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TimesheetFacade } from '../../../../core/facade/timesheet.facade';
-import { SessionUtils } from '../../../../shared/utils/session.utils';
 import { ScheduleResponse } from '../../../../core/models/response/timesheet-response.interface'
 
 @Component({
@@ -29,21 +28,19 @@ export class TimesheetPageComponent {
 
   onSubmit(): void {
     this.isFormSubmitted = true;
-    if (this.timesheetForm.invalid) {
-      return;
-    }
+    if (this.timesheetForm.invalid) return;
 
     this.isLoading = true;
     this.error = null;
     const studentId = this.timesheetForm.value.studentId;
 
-    this.timesheetFacade.getStudentSchedule(studentId).subscribe({
+        this.timesheetFacade.getStudentSchedule(studentId).subscribe({
       next: (data) => {
         this.timesheetData = data;
         this.isLoading = false;
       },
       error: (err) => {
-        this.error = err.message;
+        this.error = err.message || 'Failed to fetch schedule.';
         this.isLoading = false;
       }
     });
@@ -54,7 +51,7 @@ export class TimesheetPageComponent {
   this.isLoading = false;
   this.error = null;
   this.timesheetData = null;
-  this.timesheetForm.reset();  // ✅ Better than setValue
+  this.timesheetForm.reset();
   }
 
 }

@@ -22,10 +22,9 @@ import { TimesheetFacade } from '../../core/facade/timesheet.facade';
     TimesheetRoutingModule  // Add this
   ],
   providers:[
-       // Add this provider configuration
     {
-      provide: TimesheetServiceContract, // The abstract class/token
-      useClass: TimesheetService // The concrete implementation
+      provide: TimesheetServiceContract,
+      useClass: TimesheetService
     },
     TimesheetFacade,
   ],
