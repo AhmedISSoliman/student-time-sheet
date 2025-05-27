@@ -9,8 +9,8 @@ import { ClassSession } from '../../../../core/models/response/timesheet-respons
 })
 export class CurrentClassComponent {
   @Input() set schedule(classes: ClassSession[]) {
-    this.currentClass = classes.find(c => DateUtils.isCurrentClass(c)) || null;
-    this.nextClass = classes.find(c => DateUtils.isNextClass(c)) || null;
+    this.currentClass = classes?.find(c => DateUtils.isCurrentClass(c)) || null;
+    this.nextClass = classes?.find(c => DateUtils.isNextClass(c)) || null;
   }
 
   currentClass: ClassSession | null = null;
