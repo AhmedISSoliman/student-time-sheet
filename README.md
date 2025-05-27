@@ -16,8 +16,8 @@ ng serve -o # http://localhost:4200/schedule
 
 ## 3 Mock API (Postman)
 
-**BaseURL** `https://cf58209c-2992-4b6c-bfbd-ae4fb5eb1fb7.mock.pstmn.io`
-
+- **Import collection** `./postman/Student‑TimeSheet.postman_collection.json`
+- **BaseURL** `https://cf58209c-2992-4b6c-bfbd-ae4fb5eb1fb7.mock.pstmn.io`
 - **Endpoint** `POST /api/student/schedule`
 - **Header** `sessionID` = `btoa(<timestamp>-<studentId>)` (added automatically by Angular)
 - **Examples**
