@@ -16,6 +16,13 @@ ng serve -o # http://localhost:4200/schedule
 
 ## 3 Mock API (Postman)
 
+- **Note**: 
+      The mock response times (startTime, endTime) are hardcoded ISO strings. I intentionally used static timestamps    instead of dynamic ones.
+
+      Why? Postman mock servers do support some dynamic variables like {{$isoTimestamp}}, but they don’t allow logic (e.g. +30 min) or accessing request values. That means you can't dynamically set the time to "now + duration" reliably, which is essential for displaying current or upcoming classes.
+
+      As a result, to show a "Current Class" or "Next Class" correctly, you must manually adjust the time values inside the Postman Example so they align with the current time. This limitation is purely due to Postman's mock capabilities—not the Angular logic.
+
 - **Import collection** `./postman/Student‑TimeSheet.postman_collection.json`
 - **BaseURL** `https://cf58209c-2992-4b6c-bfbd-ae4fb5eb1fb7.mock.pstmn.io`
 - **Endpoint** `POST /api/student/schedule`
