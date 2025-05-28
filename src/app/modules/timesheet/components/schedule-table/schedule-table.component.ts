@@ -22,6 +22,6 @@ export class ScheduleTableComponent {
   }
 
   trackByClass(index: number, item: ClassSession): string {
-  return `${item.courseCode}-${item.startTime}`;
+  return `${item.courseCode}`;
 }
 }

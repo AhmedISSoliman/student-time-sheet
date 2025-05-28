@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TimesheetFacade } from '../../../../core/facade/timesheet.facade';
 import { ScheduleResponse } from '../../../../core/models/response/timesheet-response.interface'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pages',
@@ -17,7 +18,8 @@ export class TimesheetPageComponent {
   isFormSubmitted: boolean = false;
   constructor(
     private fb: FormBuilder,
-    private timesheetFacade: TimesheetFacade
+    private timesheetFacade: TimesheetFacade,
+    private toastr: ToastrService
   ) {
     this.timesheetForm = this.fb.group({
       studentId: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
@@ -28,13 +30,16 @@ export class TimesheetPageComponent {
 
   onSubmit(): void {
     this.isFormSubmitted = true;
-    if (this.timesheetForm.invalid) return;
+    if (this.timesheetForm.invalid) {
+      this.toastr.warning("Please enter a valid Student ID to proceed.", "Warning")
+      return;
+    }
 
     this.isLoading = true;
     this.error = null;
     const studentId = this.timesheetForm.value.studentId;
 
-        this.timesheetFacade.getStudentSchedule(studentId).subscribe({
+    this.timesheetFacade.getStudentSchedule(studentId).subscribe({
       next: (data) => {
         this.timesheetData = data;
         this.isLoading = false;
@@ -47,11 +52,11 @@ export class TimesheetPageComponent {
   }
 
   reset() {
-      this.isFormSubmitted = false;
-  this.isLoading = false;
-  this.error = null;
-  this.timesheetData = null;
-  this.timesheetForm.reset();
+    this.isFormSubmitted = false;
+    this.isLoading = false;
+    this.error = null;
+    this.timesheetData = null;
+    this.timesheetForm.reset();
   }
 
 }

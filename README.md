@@ -16,12 +16,16 @@ ng serve -o # http://localhost:4200/schedule
 
 ## 3 Mock API (Postman)
 
-- **Note**: 
-      The mock response times (startTime, endTime) are hardcoded ISO strings. I intentionally used static timestamps    instead of dynamic ones.
+- **Note** :
+        The mock response times (startTime, endTime) are hardcoded ISO strings. I intentionally used static timestamps instead of dynamic ones.
 
-      Why? Postman mock servers do support some dynamic variables like {{$isoTimestamp}}, but they don’t allow logic (e.g. +30 min) or accessing request values. That means you can't dynamically set the time to "now + duration" reliably, which is essential for displaying current or upcoming classes.
+        Why?
+        While Postman mock servers support built-in variables like {{$isoTimestamp}}, they do not support logic such as adding durations (e.g. +30 minutes) or referencing request values dynamically. That means it’s not possible to generate a true “current” or “next” class in real time through the mock.
 
-      As a result, to show a "Current Class" or "Next Class" correctly, you must manually adjust the time values inside the Postman Example so they align with the current time. This limitation is purely due to Postman's mock capabilities—not the Angular logic.
+        Result:
+        To correctly simulate a “Current Class” or “Next Class” in the Angular frontend, you’ll need to manually adjust the startTime and endTime fields in the mock example to match the current time.
+
+        This is a limitation of Postman’s mock engine, not of the Angular logic itself. Once updated, the mock will reflect those changes immediately.
 
 - **Import collection** `./postman/Student‑TimeSheet.postman_collection.json`
 - **BaseURL** `https://cf58209c-2992-4b6c-bfbd-ae4fb5eb1fb7.mock.pstmn.io`
@@ -68,4 +72,18 @@ now >= start && now <= end      // current class
 start > now && start‑now <= 1h  // next class
 
 
-_Created by Ahmed Soliman – feel free to open issues or questions._
+## 7 Screenshots
+
+### Initial Page
+![Initial View](./src/assets/screenshots/init-page.png)
+
+### After Submitting Student ID (with current class highlighted)
+![Schedule View](./src/assets/screenshots/current-class.png)
+
+### After Submitting Student ID (with next class highlighted)
+![Schedule View](./src/assets/screenshots/next-class.png)
+
+### After Submitting Student ID (without data or error)
+![Error View](./src/assets/screenshots/error.png)
+
+_Created by Ahmed Soliman – feel free to open issues or questions._
